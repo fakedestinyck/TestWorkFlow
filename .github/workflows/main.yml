@@ -28,7 +28,7 @@ jobs:
       run: |
         cd icon
         a=$(ls -l | grep "^-" | wc -l)
-        echo "{\"icon\": $a}" > tools/icon.json
+        echo "{\"icon\": $a}" > ../tools/icon.json
         
     # Runs a set of commands using the runners shell
     - name: Github Pages
