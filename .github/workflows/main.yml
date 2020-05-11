@@ -24,28 +24,28 @@ jobs:
         persist-credentials: false
 
     - name: Zip files
-      uses: montudor/action-zip@v0.1.0
-      with:
-        args: zip -qq -r ./icon/test1.zip . -i ./icon/*
-
+      run: |
+        cd icon
+        for file in `ls $1`
+        do
+        zip -r $file/$file.zip ./$file/*
+        done
+        cd ..
     - name: Commit files
       run: |
         git config --local user.email "fakedestinyck@gmail.com"
         git config --local user.name "fakedestinyck"
         git add -A
-        git commit -m "Add zip files"
-        
+        git commit -m "Add zip files"        
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-    
+        github_token: ${{ secrets.GITHUB_TOKEN }}   
     - name: Count number of icons
       run: |
         cd icon
         a=$(ls -l | grep "^-" | wc -l)
-        echo "{\"icon\": $a}" > ../tools/icon.json
-        
+        echo "{\"icon\": $a}" > ../tools/icon.json        
     # Runs a set of commands using the runners shell
     - name: Github Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
