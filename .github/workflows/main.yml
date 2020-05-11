@@ -26,7 +26,7 @@ jobs:
     - name: Zip files
       uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r ./icon/test1.zip ./icon/*
+        args: zip -qq -r ./icon/test1.zip . -i ./icon/*
 
     - name: Commit files
       run: |
