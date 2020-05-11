@@ -26,10 +26,7 @@ jobs:
     - name: Zip files
       run: |
         cd icon
-        for file in `ls $1`
-        do
-        zip -r $file/$file.zip ./$file/*
-        done
+        zip -r file.zip *
         cd ..
     - name: Commit files
       run: |
